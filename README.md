@@ -2,7 +2,7 @@
 
 A brand-led e-commerce frontend: cinematic home page, product listing, product detail and a working cart.
 Plain HTML/CSS + ES modules and **GSAP ScrollTrigger**. There is no build step.
-
+Deployed link- https://serein-chi.vercel.app/
 ## Run it
 
 ```bash
