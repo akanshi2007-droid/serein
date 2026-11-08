@@ -1,71 +1,226 @@
-# SEREIN — scroll-driven skincare storefront
+# SEREIN. — Scroll-Driven Skincare Storefront
 
-A brand-led e-commerce frontend: cinematic home page, product listing, product detail and a working cart.
-Plain HTML/CSS + ES modules and **GSAP ScrollTrigger**. There is no build step.
-Deployed link- https://serein-chi.vercel.app/
-## Run it
+**A little care. A lot of glow.**
+
+A modern, brand-focused skincare e-commerce experience featuring cinematic scroll storytelling, immersive transitions and a fully interactive shopping journey.
+
+🔗 **Live Demo:** https://serein-chi.vercel.app/
+
+---
+
+## ✨ Overview
+
+SEREIN is a premium skincare storefront designed around a minimal botanical aesthetic and an immersive browsing experience.
+
+Rather than following a conventional e-commerce layout, the homepage uses scroll-driven storytelling to guide visitors through the brand, ingredients, products and skincare rituals.
+
+The project combines creative frontend design with practical shopping functionality, including product discovery, detailed product pages and a persistent shopping cart.
+
+## 🎨 Design & Experience
+
+- **Cinematic Homepage:** Full-screen sections with immersive visual storytelling.
+- **Scroll-Driven Animations:** Pinned scenes, layered transitions, parallax and section takeovers.
+- **Editorial Typography:** Elegant headings paired with clean, modern UI typography.
+- **Product Presentation:** Interactive product cards, detailed galleries and product information.
+- **Responsive Design:** Adapted layouts and animations for desktop, tablet and mobile.
+- **Botanical Aesthetic:** A cohesive visual identity inspired by nature and minimal skincare branding.
+
+## 🛍️ Features
+
+### Homepage
+- Cinematic hero introduction.
+- Animated brand storytelling.
+- Interactive ingredient showcase.
+- Featured product collection.
+- Cleanse, Hydrate and Protect skincare ritual.
+- Editorial campaign and closing sections.
+
+### Shop
+- Product listing and category filtering.
+- Sorting functionality.
+- Responsive product grid.
+- Quick product discovery.
+
+### Product Details
+- Product image gallery.
+- Product descriptions and benefits.
+- Ingredient information.
+- Size and quantity selection.
+- Related product recommendations.
+- Sticky mobile purchase bar.
+
+### Shopping Cart
+- Slide-in cart drawer.
+- Add, remove and update products.
+- Persistent cart using LocalStorage.
+- Free-shipping progress indicator.
+- Subtotal calculation.
+- Mock checkout flow.
+
+## 🎬 Scroll Animation System
+
+The homepage uses **GSAP and ScrollTrigger** to create a continuous, scroll-driven visual experience.
+
+| Section | Animation |
+|---|---|
+| Hero | Pinned introduction with layered parallax |
+| Brand Story | Sticky layout with word-by-word text reveal |
+| Ingredients | Expanding arch-shaped image reveal |
+| Products | Full-screen product scene transitions |
+| Ritual | Pinned Cleanse, Hydrate and Protect chapters |
+| Campaign | Image reveal with oversized moving typography |
+| Closing | Animated text reveal and footer transition |
+
+All scroll animations are scrubbed, allowing transitions to reverse naturally when scrolling upward.
+
+### Performance & Accessibility
+- Native scrolling without forced scroll hijacking.
+- Reduced-motion support.
+- Responsive animation behaviour.
+- Static fallback if GSAP is unavailable.
+- Mobile-friendly layouts without pinned sections.
+
+## 🧰 Tech Stack
+
+| Technology | Usage |
+|---|---|
+| HTML5 | Structure |
+| CSS3 | Styling, layouts and transitions |
+| JavaScript (ES Modules) | Application logic |
+| GSAP 3 | Animation timelines |
+| ScrollTrigger | Scroll-based storytelling |
+| LocalStorage | Cart persistence |
+| Vercel | Deployment |
+
+No framework or build step is required.
+
+## 📁 Project Structure
+
+```text
+serein/
+├── index.html
+├── package.json
+├── src/
+│   ├── main.js
+│   ├── router.js
+│   ├── data/
+│   │   └── products.js
+│   ├── store/
+│   │   └── cart.js
+│   ├── components/
+│   │   ├── header.js
+│   │   ├── footer.js
+│   │   ├── productCard.js
+│   │   ├── cartDrawer.js
+│   │   └── toast.js
+│   ├── pages/
+│   │   ├── home.js
+│   │   ├── shop.js
+│   │   └── product.js
+│   ├── animations/
+│   │   └── story.js
+│   ├── utils/
+│   │   ├── art.js
+│   │   └── dom.js
+│   └── styles/
+│       ├── tokens.css
+│       ├── base.css
+│       ├── components/
+│       ├── pages/
+│       └── story.css
+└── assets/
+    ├── logo.svg
+    ├── favicon.svg
+    └── grain.svg
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js and npm (for the npm-based server).
+- A modern browser.
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-npm start            # npx serve on http://localhost:5173
-# or
+git clone <your-repository-url>
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd serein
+```
+
+3. Start the local server:
+
+```bash
+npm start
+```
+
+Alternatively, use Python:
+
+```bash
 python3 -m http.server 5173
 ```
-ES modules need a web server, so double-clicking `index.html` will not work.
-GSAP loads from the jsDelivr CDN (see the bottom of `index.html`). For offline use, save `gsap.min.js` and
-`ScrollTrigger.min.js` (v3.12.x) into `src/vendor/` and point the two `<script>` tags at them.
 
-`npm run check` syntax-checks every module and verifies imports.
+4. Open:
 
-## Routes (hash router)
-| Route | Page |
-|---|---|
-| `#/` | Cinematic home story |
-| `#/shop`, `#/shop?cat=hydrate` | Listing with category filter + sort |
-| `#/product/<id>` | Product detail (gallery, sizes, qty, accordion, related, sticky mobile buy bar) |
-| Cart | Slide-in drawer from any page; persists in `localStorage`; free-shipping meter; mock checkout |
-
-## Structure
-```
-index.html
-src/
-  main.js              boot: header, footer, cart, router
-  router.js            hash router
-  data/products.js     mock catalogue (edit here; add `image:` to use real photos)
-  store/cart.js        cart state + persistence
-  components/          header, footer, productCard, cartDrawer, toast  (reusable)
-  pages/               home, shop, product
-  animations/story.js  all GSAP timelines for the home page
-  utils/art.js         generated SVG bottles + botanical scenes (stand-ins for photography)
-  utils/dom.js         helpers (query, splitWords, stars)
-  styles/              tokens → base → components → pages → story
-  assets/              logo.svg, favicon.svg, grain.svg
+```text
+http://localhost:5173
 ```
 
-## Brand system
-Ivory `#F6F1E7` · Sage `#A8B8A0` · Forest `#1E3A2C` · Clay `#C4A07A`.
-Cormorant Garamond (display) + Manrope (UI). All tokens live in `src/styles/tokens.css`.
+**Note:** ES Modules require a local server. Opening `index.html` directly in the browser will not work.
 
-## How the scroll story works
-Home sections, in order: Hero → Brand story → Ingredients → Products → Ritual → Campaign → Closing + footer.
+### Available Scripts
 
-| Scene | Technique |
+```bash
+npm start
+npm run check
+```
+
+- `npm start` — Starts the local development server.
+- `npm run check` — Syntax-checks JavaScript modules and verifies imports.
+
+## 🎨 Brand System
+
+| Element | Choice |
 |---|---|
-| Hero | Pinned (`pinSpacing:false`) so the brand section slides over it (section takeover); 4 parallax layers move at different speeds; headline blurs and scales away |
-| Brand | CSS `position: sticky` (not pinned); scrubbed word-by-word reveal; ivory → sage background |
-| Ingredients | Pinned; arch-shaped `clip-path` expands to full screen; image scale 1.45 → 1; sage → forest |
-| Products | Pinned; four scenes wipe over each other with clip-path; bottles scale and drift; progress dots |
-| Ritual | Pinned; Cleanse / Hydrate / Protect chapters take over a single stage; ivory → sage → forest |
-| Campaign | Sticky, not pinned; clip-path reveal; two oversized text rows slide in opposite directions |
-| Closing | Word reveal; the panel lifts away to uncover a fixed footer underneath |
+| Primary | Ivory `#F6F1E7` |
+| Secondary | Sage `#A8B8A0` |
+| Accent | Forest `#1E3A2C` |
+| Highlight | Clay `#C4A07A` |
+| Display Font | Cormorant Garamond |
+| UI Font | Manrope |
 
-Rules followed: every tween is scrubbed, so scrolling up reverses it exactly; native scrolling is never hijacked;
-only 4 of 7 scenes are pinned.
+The design focuses on natural tones, generous whitespace, elegant typography and understated interactions.
 
-**Reduced motion / mobile.** `gsap.matchMedia()` gates everything.
-- `prefers-reduced-motion: reduce` → no animation. The page is a clean static stacked layout.
-- Width ≤ 860px → nothing is pinned; light scrubbed reveals only.
-- No GSAP (CDN blocked) → same static layout. The store still works fully.
+## 🖼️ Customising Product Images
 
-## Swapping in real photography
-Set `image: "./src/assets/images/serum.jpg"` on a product in `src/data/products.js`. The art helpers in
-`utils/art.js` (`gardenScene`, `editorialScene`, ...) can be replaced with `<img>` tags in `pages/home.js`.
+Product information is maintained in:
+
+```text
+src/data/products.js
+```
+
+To use real product photography, add an image path to the relevant product:
+
+```js
+image: "./src/assets/images/serum.jpg"
+```
+
+The generated SVG illustrations in `src/utils/art.js` can also be replaced with custom product and botanical photography.
+
+## 💡 Design Philosophy
+
+SEREIN explores how an e-commerce website can become more than a catalogue of products.
+
+By combining editorial layouts, scroll-driven storytelling and functional shopping interactions, the experience aims to make product discovery feel natural, engaging and memorable.
+
+**Designed to be explored, not just browsed.**
+
+---
+
+**SEREIN. — Skincare, Simplified.**
