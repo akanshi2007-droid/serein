@@ -1,0 +1,174 @@
+/* ============================================================
+   SEREIN home story.
+   1) Base rules = a complete, readable STATIC layout (no JS / no GSAP / reduced motion).
+   2) .is-cinematic  = desktop scroll film (pinned + sticky scenes)
+   3) .is-lite       = mobile: natural scrolling, light scrubbed effects
+   ============================================================ */
+
+.story { position: relative; }
+.scene { position: relative; z-index: 2; }
+.art { width: 100%; height: 100%; }
+
+/* split text helper */
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+.w__i { display: inline-block; will-change: transform, opacity; }
+.line { display: block; overflow: hidden; padding-bottom: .1em; }
+.line__i { display: inline-block; will-change: transform; }
+
+/* ---------------- 1. HERO ---------------- */
+.hero { z-index: 1; min-height: 100svh; overflow: hidden; background: var(--ivory); isolation: isolate; }
+.hero__layer { position: absolute; inset: 0; will-change: transform; }
+.hero__layer .art { object-fit: cover; }
+.hero__layer--back { z-index: 0; } .hero__layer--mid { z-index: 1; }
+.hero__layer--front { z-index: 3; pointer-events: none; }
+.hero__product {
+  position: absolute; z-index: 2; right: 9vw; bottom: 5vh; width: min(40vw, 560px); height: 76vh;
+  display: flex; justify-content: center; align-items: flex-end; will-change: transform;
+}
+.hero__product .art { height: 100%; width: auto; position: relative; filter: drop-shadow(0 40px 40px rgba(20, 42, 31, .25)); }
+.hero__glow { position: absolute; inset: 8% -10% 0; background: radial-gradient(closest-side, rgba(255, 244, 222, .85), transparent); }
+.hero__inner {
+  position: relative; z-index: 5; max-width: 62%; min-height: 100svh; display: flex; flex-direction: column; justify-content: center;
+  gap: 1.5rem; padding: calc(var(--header-h) + 6vh) var(--gutter) 10vh; transform-origin: 30% 50%;
+}
+.hero__title { font-size: clamp(3rem, 1rem + 7vw, 8.2rem); line-height: .94; color: var(--forest); }
+.hero__title em { color: var(--sage-deep); font-style: italic; }
+.hero__lede { max-width: 40ch; font-size: var(--fs-lede); color: var(--ink-soft); }
+.hero__cta { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: .4rem; }
+.hero__scroll { position: absolute; z-index: 5; left: var(--gutter); bottom: calc(4vh + var(--radius-lg)); display: flex; align-items: center; gap: .8rem; font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-soft); }
+.hero__scroll i { width: 56px; height: 1px; background: currentColor; transform-origin: left; animation: line 2.4s var(--ease) infinite; }
+@keyframes line { 0% { transform: scaleX(0); } 60% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0; } }
+
+/* ---------------- 2. BRAND ---------------- */
+.brand { background: var(--ivory); border-radius: var(--radius-lg) var(--radius-lg) 0 0; margin-top: calc(var(--radius-lg) * -1); box-shadow: 0 -30px 60px -30px rgba(20, 42, 31, .25); }
+.brand__sticky { min-height: 100svh; padding: 22vh var(--gutter) 12vh; display: flex; flex-direction: column; justify-content: center; gap: 2.4rem; }
+.brand__text { font-size: clamp(2.6rem, 1rem + 6.4vw, 8rem); line-height: 1; max-width: 17ch; color: var(--forest); }
+.brand__facts { display: flex; gap: clamp(1.5rem, 5vw, 5rem); flex-wrap: wrap; }
+.brand__facts li { display: grid; gap: .2rem; } .brand__facts b { font-family: var(--font-serif); font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 500; line-height: 1; color: var(--forest); }
+.brand__facts span { font-size: .85rem; color: var(--ink-soft); max-width: 18ch; }
+
+/* ---------------- 3. INGREDIENTS (static: stacked) ---------------- */
+.ingredients { background: var(--forest); color: var(--ivory); }
+.ing__title-block { padding: 14vh var(--gutter) 5vh; color: var(--ivory); display: grid; gap: 1rem; }
+.ing__title-block .eyebrow { color: var(--sage); }
+.ing__title { font-size: var(--fs-h2); line-height: .98; }
+.ing__frame { position: relative; height: 70vh; margin: 0 var(--gutter); border-radius: var(--radius-lg); overflow: hidden; }
+.ing__art, .ing__art .art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ing__veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 28, 18, .15), rgba(10, 28, 18, .6)); opacity: 1; }
+.ing__overlay { padding: 6vh var(--gutter) 14vh; display: grid; gap: 2rem; }
+.ing__big { font-size: clamp(2.2rem, 1rem + 4vw, 5rem); line-height: 1; max-width: 16ch; }
+.ing__list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
+.ing__list li { display: grid; gap: .3rem; padding-top: 1rem; border-top: 1px solid rgba(246, 241, 231, .3); }
+.ing__list b { font-size: 1.9rem; font-weight: 500; } .ing__list span { font-size: .9rem; opacity: .75; }
+
+/* ---------------- 4. PRODUCTS (static: stacked) ---------------- */
+.products { background: var(--ivory); }
+.pscene { position: relative; overflow: hidden; background: var(--bg); min-height: 90svh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8vh var(--gutter); }
+.pscene__num { position: absolute; right: 2vw; bottom: -4vw; font-size: 34vw; line-height: 1; opacity: .09; color: var(--forest); pointer-events: none; }
+.pscene__text { position: relative; z-index: 3; display: grid; gap: 1rem; justify-items: start; max-width: 520px; }
+.pscene__name { font-size: clamp(2.8rem, 1rem + 6vw, 7rem); line-height: .95; color: var(--forest); }
+.pscene__desc { font-size: var(--fs-lede); color: var(--ink-soft); max-width: 34ch; }
+.pscene__price { font-size: 1.3rem; font-weight: 600; } .pscene__price span { font-weight: 400; color: var(--ink-soft); font-size: .95rem; }
+.pscene__cta { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: .6rem; }
+.pscene__art { position: relative; height: 70vh; display: flex; justify-content: center; align-items: flex-end; will-change: transform; }
+.pscene__art .art, .pscene__art img { position: relative; height: 100%; width: auto; filter: drop-shadow(0 40px 36px rgba(20, 42, 31, .28)); }
+.pscene__halo { position: absolute; inset: 6% 8% 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .7), transparent); }
+.prod__dots { display: none; }
+
+/* ---------------- 5. RITUAL (static: stacked) ---------------- */
+.ritual { background: var(--ivory); }
+.ritual__head { padding: 14vh var(--gutter) 4vh; }
+.ritual__rail { display: none; }
+.rchapter { background: var(--bg); color: var(--fg); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding: 8vh var(--gutter); min-height: 90svh; }
+.rchapter__text { display: grid; gap: 1.1rem; justify-items: start; max-width: 480px; }
+.rchapter__n { font-size: 1.4rem; opacity: .6; }
+.rchapter__t { font-size: clamp(3.4rem, 1rem + 8vw, 9rem); line-height: .9; }
+.rchapter__text p { font-size: var(--fs-lede); opacity: .85; max-width: 36ch; }
+.rchapter__art { position: relative; height: 70vh; border-radius: var(--radius-lg); overflow: hidden; }
+.rchapter__bg, .rchapter__bg .art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rchapter__prod { position: absolute; inset: 12% 0 6%; display: flex; justify-content: center; align-items: flex-end; will-change: transform; }
+.rchapter__prod .art, .rchapter__prod img { height: 100%; width: auto; filter: drop-shadow(0 30px 30px rgba(10, 28, 18, .35)); }
+
+/* ---------------- 6. CAMPAIGN ---------------- */
+.campaign { background: var(--forest-2); }
+.camp__sticky { position: relative; height: 90svh; overflow: hidden; display: flex; align-items: center; }
+.camp__img { position: absolute; inset: 0; will-change: clip-path; } .camp__img .art { transform-origin: 50% 60%; }
+.camp__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 28, 18, .25), rgba(10, 28, 18, .55)); }
+.camp__text { position: relative; z-index: 2; width: 100%; font-size: clamp(3.6rem, 1rem + 13vw, 15rem); line-height: .88; color: var(--ivory); white-space: nowrap; letter-spacing: -0.03em; }
+.camp__row { display: block; will-change: transform; } .camp__text em { color: var(--clay-soft); }
+.camp__row--a { padding-left: var(--gutter); } .camp__row--b { padding-left: calc(var(--gutter) * 3); }
+.camp__cap { position: absolute; z-index: 2; left: var(--gutter); bottom: 5vh; color: var(--ivory); font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; }
+
+/* ---------------- 7. CLOSING ---------------- */
+.closing { z-index: 3; background: var(--ivory); border-radius: var(--radius-lg); margin-top: calc(var(--radius-lg) * -1); min-height: 100svh; display: grid; place-items: center; padding: 18vh var(--gutter); text-align: center; box-shadow: 0 -30px 60px -30px rgba(0, 0, 0, .35); }
+.closing__inner { display: grid; gap: 1.6rem; justify-items: center; max-width: 1000px; }
+.closing__title { font-size: clamp(2.8rem, 1rem + 7vw, 8.4rem); line-height: .96; color: var(--forest); }
+.closing__lede { color: var(--ink-soft); font-size: var(--fs-lede); max-width: 44ch; }
+.signup { display: flex; gap: .5rem; padding: .35rem; background: #fff7; border: 1px solid var(--line); border-radius: 999px; width: min(480px, 100%); }
+.signup input { flex: 1; border: 0; background: transparent; padding: 0 1.1rem; font: inherit; min-width: 0; } .signup input:focus { outline: none; }
+
+/* ---------------- STATIC / MOBILE adjustments ---------------- */
+@media (max-width: 860px) {
+  .hero__inner { max-width: 100%; justify-content: flex-start; padding-top: calc(var(--header-h) + 5vh); }
+  .hero__product { left: 0; right: 0; width: 100%; height: 38vh; bottom: 2vh; }
+  .hero__scroll { display: none; }
+  .pscene, .rchapter { grid-template-columns: 1fr; gap: 1rem; padding: 7vh var(--gutter); min-height: 0; }
+  .pscene__art { height: 46vh; } .rchapter__art { height: 54vh; }
+  .ing__frame { height: 64vh; margin: 0 1rem; }
+  .camp__sticky { height: 80svh; }
+  .camp__row--b { padding-left: calc(var(--gutter) * 2); }
+}
+
+/* ============================================================
+   2. CINEMATIC (desktop, motion allowed)
+   ============================================================ */
+.is-cinematic .hero { height: 100vh; }
+
+/* brand: CSS sticky + scrubbed words */
+.is-cinematic .brand { height: 230vh; }
+.is-cinematic .brand__sticky { position: sticky; top: 0; height: 100vh; min-height: 0; padding-top: 12vh; padding-bottom: 8vh; }
+
+/* ingredients: pinned full-screen */
+.is-cinematic .ingredients { height: 100vh; overflow: hidden; background: var(--sage); color: var(--ink); }
+.is-cinematic .ing__title-block { position: absolute; z-index: 4; left: var(--gutter); top: 50%; transform: translateY(-50%); width: 28vw; padding: 0; color: var(--forest); }
+.is-cinematic .ing__title-block .eyebrow { color: var(--forest); }
+.is-cinematic .ing__title { font-size: clamp(2rem, 1rem + 2.8vw, 4rem); }
+.is-cinematic .ing__frame { position: absolute; inset: 0; height: auto; margin: 0; border-radius: 0; z-index: 2; will-change: clip-path; }
+.is-cinematic .ing__veil { opacity: 0; }
+.is-cinematic .ing__overlay { position: absolute; inset: 0; z-index: 3; color: var(--ivory); padding: 14vh var(--gutter) 10vh; align-content: end; }
+.is-cinematic .ing__list { grid-template-columns: repeat(4, 1fr); }
+
+/* products: pinned stack of full-screen scenes */
+.is-cinematic .products { height: 100vh; overflow: hidden; background: var(--forest); }
+.is-cinematic .pscene { position: absolute; inset: 0; min-height: 0; pointer-events: none; will-change: clip-path; }
+.is-cinematic .pscene.is-active { pointer-events: auto; }
+.is-cinematic .pscene__art { height: 76vh; margin-top: 8vh; }
+.is-cinematic .prod__dots { display: grid; gap: .7rem; position: absolute; z-index: 10; right: calc(var(--gutter) * .5); top: 50%; transform: translateY(-50%); }
+.prod__dots li { width: 7px; height: 7px; border-radius: 50%; background: var(--forest); opacity: .25; transition: .4s var(--ease); }
+.prod__dots li.is-on { opacity: 1; height: 26px; border-radius: 4px; }
+
+/* ritual: pinned stage, chapters wipe over each other */
+.is-cinematic .ritual { height: 100vh; overflow: hidden; background: var(--forest-2); }
+.is-cinematic .ritual__head { position: absolute; z-index: 6; top: calc(var(--header-h) + 18px); left: var(--gutter); padding: 0; mix-blend-mode: difference; }
+.is-cinematic .ritual__head .eyebrow { color: #fff; }
+.is-cinematic .ritual__stage { position: absolute; inset: 0; }
+.is-cinematic .rchapter { position: absolute; inset: 0; min-height: 0; pointer-events: none; padding: 0 var(--gutter) 0 var(--gutter); grid-template-columns: 1fr 1.05fr; }
+.is-cinematic .rchapter.is-active { pointer-events: auto; }
+.is-cinematic .rchapter__art { height: 74vh; margin-top: 6vh; will-change: transform; }
+.is-cinematic .ritual__rail { display: flex; gap: 2rem; position: absolute; z-index: 6; left: var(--gutter); bottom: 6vh; mix-blend-mode: difference; color: #fff; }
+.ritual__rail li { display: flex; align-items: center; gap: .7rem; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; opacity: .4; transition: opacity .5s; }
+.ritual__rail li i { width: 24px; height: 1px; background: currentColor; transition: width .6s var(--ease); }
+.ritual__rail li.is-on { opacity: 1; } .ritual__rail li.is-on i { width: 56px; }
+
+/* campaign: sticky + clip reveal */
+.is-cinematic .campaign { height: 260vh; }
+.is-cinematic .camp__sticky { position: sticky; top: 0; height: 100vh; }
+
+/* closing hands over to the fixed footer */
+.is-cinematic .closing { margin-top: calc(var(--radius-lg) * -1); border-radius: var(--radius-lg); }
+
+/* ============================================================
+   3. LITE (mobile, motion allowed) — natural scroll, no pinning
+   ============================================================ */
+.is-lite .ing__frame { will-change: clip-path; }
+.is-lite .camp__img { will-change: clip-path; }

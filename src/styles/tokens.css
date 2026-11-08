@@ -1,0 +1,37 @@
+/* SEREIN design tokens — one place to re-theme the whole storefront */
+:root {
+  /* colour */
+  --ivory: #f6f1e7;
+  --ivory-2: #ece5d4;
+  --sage-light: #c5d0bc;
+  --sage: #a8b8a0;
+  --sage-deep: #7e947c;
+  --forest: #1e3a2c;
+  --forest-2: #142a1f;
+  --clay: #c4a07a;
+  --clay-soft: #e6d3bb;
+  --ink: #1b241e;
+  --ink-soft: #4b5a4f;
+  --line: rgba(27, 36, 30, 0.14);
+
+  /* type */
+  --font-serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* scale */
+  --fs-eyebrow: 0.72rem;
+  --fs-body: 1rem;
+  --fs-lede: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+  --fs-h3: clamp(1.5rem, 1.2rem + 1vw, 2.1rem);
+  --fs-h2: clamp(2.4rem, 1.5rem + 4vw, 5rem);
+  --fs-display: clamp(3.2rem, 1.2rem + 8.5vw, 9.5rem);
+
+  /* shape + space */
+  --radius: 22px;
+  --radius-lg: 40px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --header-h: 72px;
+  --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --shadow-soft: 0 18px 50px -24px rgba(20, 42, 31, 0.35);
+  --shadow-lift: 0 30px 70px -30px rgba(20, 42, 31, 0.45);
+}

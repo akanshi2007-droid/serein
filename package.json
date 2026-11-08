@@ -1,0 +1,13 @@
+{
+  "name": "serein-storefront",
+  "version": "1.0.0",
+  "description": "SEREIN — scroll-driven botanical skincare storefront (vanilla ES modules + GSAP ScrollTrigger)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "start:python": "python3 -m http.server 5173",
+    "check": "node scripts/check.mjs"
+  },
+  "license": "MIT"
+}
